@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+           version="3.1">
+    <!--配置Servlet路径-->
+    <!--1.配置映射路径-->
+    <servlet-mapping>
+        <!--给Servlet取一个名字-->
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>com.cong.web.HelloServlet</servlet-class>
+    </servlet>
+   
+
+</web-app>
