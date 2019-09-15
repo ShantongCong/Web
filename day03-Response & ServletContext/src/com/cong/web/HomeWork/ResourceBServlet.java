@@ -1,4 +1,4 @@
-package com.cong.web;
+package com.cong.web.HomeWork;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,19 +6,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet("/response_line")
-public class ResponseLineServlet extends HttpServlet {
+@WebServlet("/resource_b")
+public class ResourceBServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+
+        PrintWriter out = response.getWriter();
+        out.write("<body bgcolor=\"yellow\"><h1>黄色网站</h1></body>");
 
 
-        //设置状态码和信息
-        //response.setStatus(500);
-        response.sendError(500,"你妈还活着？");
-        //三秒过后跳转百度
-        //response.setHeader("refresh","3;url=https://www.baidu.com");
 
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request,response);
     }
