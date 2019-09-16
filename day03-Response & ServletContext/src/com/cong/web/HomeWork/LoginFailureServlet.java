@@ -8,22 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/resource_b")
-public class ResourceBServlet extends HttpServlet {
+@WebServlet("/login_failure")
+public class LoginFailureServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
-
         PrintWriter out = response.getWriter();
-        out.write("<body bgcolor=\"yellow\"><h1>黄色网站</h1></body>");
-        System.out.println("bbbbbbbbbbbbbbbbbbbbb");
-        request.getRequestDispatcher("/resource_a").forward(request,response);
-
-
-
+        out.write("<h2>登陆失败</h2>");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         this.doPost(request,response);
     }
 }

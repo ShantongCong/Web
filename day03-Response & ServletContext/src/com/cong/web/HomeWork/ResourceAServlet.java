@@ -16,10 +16,11 @@ public class ResourceAServlet extends HttpServlet {
         System.out.println("AServlet接收到了用户的请求");
         PrintWriter out = response.getWriter();
         out.println("<h2>三秒过后跳转黄色网站！请脱好裤子，备好纸巾！</h2>");
+        out.write("<body bgcolor=\"red\"><h1>黄色网站</h1></body>");
 
         try {
             Thread.sleep(3000);
-            System.out.println("123");
+            System.out.println("aaaaaaaaaaaaaaaaaa");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
