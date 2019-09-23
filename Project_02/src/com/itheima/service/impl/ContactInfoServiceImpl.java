@@ -2,6 +2,7 @@ package com.itheima.service.impl;
 
 import com.itheima.dao.ContactInfoDAO;
 import com.itheima.dao.impl.ContactInfoDAOImpl;
+import com.itheima.dao.impl.ContactInfoRedisDAO;
 import com.itheima.domain.ContactInfo;
 import com.itheima.service.ContactInfoService;
 import org.apache.commons.beanutils.BeanUtils;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 public class ContactInfoServiceImpl implements ContactInfoService {
     private ContactInfoDAO dao = new ContactInfoDAOImpl();
+    private ContactInfoDAO redis = new ContactInfoRedisDAO();
 
 //    @Override
 //    public List<ContactInfo> queryAll() {
@@ -36,16 +38,16 @@ public class ContactInfoServiceImpl implements ContactInfoService {
     public boolean addContact(Map<String, String[]> parameterMap) {
         ContactInfo contactInfo = new ContactInfo();
         try {
-            BeanUtils.populate(contactInfo,parameterMap);
+            BeanUtils.populate(contactInfo, parameterMap);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return dao.addContact(contactInfo)==1;
+        return redis.addContact(contactInfo) == 1;
     }
 
     @Override
     public List<ContactInfo> queryPage(int pageOff, int pageSize) {
-        List<ContactInfo> contactInfos= dao.queryPage(pageOff,pageSize);
+        List<ContactInfo> contactInfos = dao.queryPage(pageOff, pageSize);
         return contactInfos;
 
     }
@@ -97,7 +99,15 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 
     @Override
     public List<ContactInfo> queryAll() {
-        List<ContactInfo> contactInfos = dao.queryAll();
+        List<ContactInfo> contactInfos = redis.queryAll();
+        if (contactInfos.size() != 0) {
+            return contactInfos;
+        } else {
+            contactInfos = dao.queryAll();
+            for (ContactInfo contactInfo : contactInfos) {
+                redis.addContact(contactInfo);
+            }
+        }
         return contactInfos;
     }
 

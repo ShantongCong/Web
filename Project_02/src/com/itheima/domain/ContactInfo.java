@@ -1,5 +1,6 @@
 package com.itheima.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itheima.utils.DateUtil;
 
 import java.util.Date;
@@ -61,15 +62,18 @@ public class ContactInfo {
                 '}';
     }
 
+    @JsonIgnore
     public long getAge() {
         long now = System.currentTimeMillis();
         return (now - birthday) / 1000 / 60 / 60 / 24 / 365;
     }
 
+    @JsonIgnore
     public void setFormatBirthday(String formatBirthday) {
         birthday = DateUtil.transStringToDate(formatBirthday).getTime();
     }
 
+    @JsonIgnore
     public String getFormatBirthday() {
         return DateUtil.transDateToString(birthday);
     }
