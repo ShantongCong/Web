@@ -12,8 +12,35 @@
 
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/jquery.serializejson.min.js"></script>
     <script type="text/javascript" src="js/include.js"></script>
     <script type="text/javascript" src="js/captchaimg.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //点击事件
+            $("#loginForm").submit(function () {
+                var formContent = $("#loginForm").serializeJSON();
+                formContent.password = md5(formContent.password);
+
+                $.post({
+                    url: "user?action=login",
+                    data: formContent,
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 0) {
+                            //
+                            location.href = "index.html";
+                        } else {
+                            $("#errorMsg").text(result.msg);
+                            $("captcha_img").onclick;
+                        }
+                    }
+                })
+            });
+        })
+    </script>
+
 
 </head>
 

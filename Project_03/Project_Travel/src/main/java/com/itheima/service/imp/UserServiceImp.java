@@ -71,7 +71,34 @@ public class UserServiceImp implements UserService {
         }
         //插如数据库
 
-        return dao.insert(user)==1;
+        return dao.insert(user) == 1;
+    }
+
+    @Override
+    public boolean active(String code) {
+        return dao.activeCode(code) == 1;
+
+    }
+
+    @Override
+    public User queryByEmailAndPassword(String email, String password) {
+        List<User> users = dao.queryByEmail(email);
+
+        //调试使用
+        //String password1 = users.get(0).getPassword();
+        //System.out.println("password = " + password);
+        //System.out.println(password1);
+        //未查找到改用户
+        //密码错误
+        System.out.println();
+        if (users.size() == 1 && users.get(0).getPassword().equals(password)) {
+            return users.get(0);
+        } else return null;
+    }
+
+    @Override
+    public boolean IsActiveValid(User user) {
+        return user.getStatus() == 0;
     }
 
     private void generateCode(User user) {

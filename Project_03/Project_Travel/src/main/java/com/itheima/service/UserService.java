@@ -1,5 +1,7 @@
 package com.itheima.service;
 
+import com.itheima.domain.User;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
@@ -34,4 +36,27 @@ public interface UserService {
      * @return 成功返回true
      */
     public boolean insert(Map<String, String[]> parameterMap);
+
+    /**
+     * 把网页传过来的激活码去激活数据库中对应的数据
+     * @param code
+     * @return 相等则为true
+     */
+    public boolean active(String code);
+
+    /**
+     * 根据邮箱和密码查询用户对象
+     * @param email
+     * @param password
+     * @return
+     */
+    public User queryByEmailAndPassword(String email, String password);
+
+    /**
+     * 判断用户是否处于激活状态
+     * @param user
+     * @return
+     */
+    public boolean IsActiveValid(User user);
+
 }

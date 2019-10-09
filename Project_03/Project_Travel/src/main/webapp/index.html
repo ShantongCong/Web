@@ -19,6 +19,60 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+        $(function () {
+            $.post({
+                url: "route?action=distillation",
+                dataType: "json",
+                success: function (result) {
+                    for (populateItem of result.distillation.populate) {
+                        populateItemContent = `<div class="col-md-3">
+                            <a href="javascript:;">
+                                <img src="${populateItem.rimage}" alt="">
+                                <div class="has_border">
+                                    <h3>${populateItem.rname}</h3>
+                                    <div class="price">网付价<em>￥</em><strong>${populateItem.price}</strong><em>起</em></div>
+                                </div>
+                            </a>
+                        </div>`;
+                        $(populateItemContent).appendTo($("#populate"));
+                    }
+                    for (newestItem of result.distillation.newest) {
+                        newestItemContent = `<div class="col-md-3">
+                            <a href="javascript:;">
+                                <img src="${newestItem.rimage}" alt="">
+                                <div class="has_border">
+                                    <h3>${newestItem.rname}</h3>
+                                    <div class="price">网付价<em>￥</em><strong>${newestItem.price}</strong><em>起</em></div>
+                                </div>
+                            </a>
+                        </div>`;
+                        $(newestItemContent).appendTo($("#newest"));
+                    }
+
+                    for (themeItem of result.distillation.theme) {
+                        newestItemContent = `<div class="col-md-3">
+                            <a href="javascript:;">
+                                <img src="${themeItem.rimage}" alt="">
+                                <div class="has_border">
+                                    <h3>${themeItem.rname}</h3>
+                                    <div class="price">网付价<em>￥</em><strong>${themeItem.price}</strong><em>起</em></div>
+                                </div>
+                            </a>
+                        </div>`;
+                        $(newestItemContent).appendTo($("#theme"));
+                    }
+
+
+
+
+
+                }
+
+            })
+        })
+
+    </script>
 </head>
 
 <body>
@@ -86,127 +140,22 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="popularity">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_4.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_4.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_4.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_4.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                    <div id="populate" class="row">
+
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="newest">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_1.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_1.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_1.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_1.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="newest">
+                    <div id="newest" class="row">
+
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="theme">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_2.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_2.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_2.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="images/jiangxuan_2.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="theme">
+                    <div id="theme" class="row">
+
                     </div>
                 </div>
             </div>
+        </div>
     </section>
     <!-- 黑马精选end-->
     <!-- 国内游 start-->

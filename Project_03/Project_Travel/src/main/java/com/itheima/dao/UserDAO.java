@@ -13,4 +13,12 @@ public interface UserDAO {
      * @return
      */
     public int insert(User user);
+
+    /**
+     *
+     * @param code
+     * @return 受影响的行数
+     */
+    public int activeCode(String code);
+
 }

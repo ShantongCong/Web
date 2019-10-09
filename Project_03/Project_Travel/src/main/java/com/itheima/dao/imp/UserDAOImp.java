@@ -31,8 +31,7 @@ public class UserDAOImp implements UserDAO {
     public int insert(User user) {
 
 
-        String sql = "INSERT INTO tab_user('username','password','realname','birthday','gender','mobile','email','code') VALUES (?,?,?,?,?,?,?,?)";
-        String sql1 = "INSERT INTO tab_user(`username`, `password`, `realname`, `birthday`, `gender`, `mobile`, `email`,  `code`) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO tab_user(`username`, `password`, `realname`, `birthday`, `gender`, `mobile`, `email`,  `code`) VALUES (?,?,?,?,?,?,?,?)";
 
 
          return jdbcTemplate.update(sql,
@@ -45,5 +44,11 @@ public class UserDAOImp implements UserDAO {
                 user.getEmail(),
                 user.getCode());
 
+    }
+
+    @Override
+    public int activeCode(String code) {
+        String sql="UPDATE tab_user SET status=1 WHERE code=?";
+        return jdbcTemplate.update(sql,code);
     }
 }
